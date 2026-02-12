@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quest: Valentine's Proposal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #00ff00;
+            font-family: 'Press Start 2P', cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        #quest-container {
+            border: 4px solid #333;
+            padding: 40px;
+            background: #1a1a1a;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+            position: relative;
+            max-width: 80%;
+        }
+
+        h1 { font-size: 1.2rem; margin-bottom: 20px; line-height: 1.5; }
+
+        .gif-container img {
+            width: 250px;
+            height: auto;
+            border: 2px solid #00ff00;
+            margin-bottom: 20px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 15px 25px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.1s;
+        }
+
+        #yes-btn {
+            background-color: #00ff00;
+            color: black;
+            box-shadow: 4px 4px 0px #008000;
+        }
+
+        #yes-btn:hover { transform: scale(1.1); }
+
+        #no-btn {
+            background-color: #ff0000;
+            color: white;
+            box-shadow: 4px 4px 0px #800000;
+            position: absolute; /* Needed for teleportation */
+        }
+
+        /* The Smoke/Assassin effect when it disappears */
+        .smoke {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: dissipate 0.5s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes dissipate {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="quest-container">
+        <div id="main-content">
+            <h1 id="headline">MAIN QUEST: Secure a Valentine!</h1>
+            <div class="gif-container">
+                <img id="main-gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpwaG5yN3R3eGd5ZzJ3ZzJ3ZzJ3ZzJ3ZzJ3ZzJ3ZzJ3ZzJ3JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/OPU6wUKARA8AU/giphy.gif" alt="Please?">
+            </div>
+            <p>Will you be my Valentine?</p>
+            
+            <div class="button-group">
+                <button id="yes-btn" onclick="celebrate()">YES / ACCEPT</button>
+                <button id="no-btn">NO / EVADE</button>
+            </div>
+        </div>
+
+        <div id="success-screen" class="hidden">
+            <h1>QUEST COMPLETE!</h1>
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3ZhcHoxZ3N6NXh4Z3N6NXh4Z3N6NXh4Z3N6NXh4Z3N6NXh4Z3N6NXh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/kyLYXonQpkUsLYvDEK/giphy.gif" alt="Victory!">
+            <p>Achievement Unlocked: The Best Girlfriend Ever. ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('no-btn');
+        const mainGif = document.getElementById('main-gif');
+        const mainContent = document.getElementById('main-content');
+        const successScreen = document.getElementById('success-screen');
+
+        // The "Assassin" dodging logic
+        const moveButton = () => {
+            // Create smoke effect at current position
+            const smoke = document.createElement('div');
+            smoke.className = 'smoke';
+            smoke.style.left = `${noBtn.offsetLeft + 25}px`;
+            smoke.style.top = `${noBtn.offsetTop + 10}px`;
+            document.getElementById('quest-container').appendChild(smoke);
+            
+            // Move button to random location
+            const container = document.getElementById('quest-container');
+            const maxX = container.clientWidth - noBtn.clientWidth;
+            const maxY = container.clientHeight - noBtn.clientHeight;
+
+            const newX = Math.floor(Math.random() * maxX);
+            const newY = Math.floor(Math.random() * maxY);
+
+            noBtn.style.left = `${newX}px`;
+            noBtn.style.top = `${newY}px`;
+
+            // Change GIF briefly to an assassin/ninja when he misses
+            mainGif.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXhpMHB3ZWZ3Z3p3Z3p3Z3p3Z3p3Z3p3Z3p3Z3p3Z3p3JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/X8p3vK5h6CStpTogpU/giphy.gif"; 
+            
+            // Clean up smoke
+            setTimeout(() => smoke.remove(), 500);
+        };
+
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('touchstart', moveButton); // For mobile gamers
+
+        function celebrate() {
+            mainContent.classList.add('hidden');
+            successScreen.classList.remove('hidden');
+            document.body.style.backgroundColor = "#002200"; // Victory Green
+        }
+    </script>
+</body>
+</html>
