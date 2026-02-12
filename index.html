@@ -28,10 +28,10 @@
             position: relative;
             width: 90%;
             max-width: 500px;
-            min-height: 450px;
+            min-height: 480px;
         }
 
-        h1 { font-size: 1rem; margin-bottom: 20px; color: #ff00ff; }
+        h1 { font-size: 1rem; margin-bottom: 20px; color: #ff00ff; line-height: 1.4; }
 
         .gif-container img {
             width: 100%;
@@ -68,7 +68,7 @@
             background-color: #ff0000;
             color: white;
             box-shadow: 4px 4px 0px #800000;
-            position: absolute; /* The key for teleporting */
+            position: absolute;
             transition: 0.1s;
         }
 
@@ -97,7 +97,7 @@
         <div id="main-content">
             <h1 id="headline">NEW QUEST: BE MY VALENTINE?</h1>
             <div class="gif-container">
-                <img id="main-gif" src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5bnpqdTh6dzI3ZzZtZ3d6ZzJ3ZzJ3ZzJ3ZzJ3ZzJ3ZzJ3JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/c76IJLufpNUMo/giphy.gif" alt="Please?">
+                <img id="main-gif" src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5bnpqdTh6dzI3ZzZtZ3d6ZzJ3ZzJ3ZzJ3ZzJ3ZzJ3ZzJ3JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/c76IJLufpNUMo/giphy.gif" alt="Please?">
             </div>
             
             <div class="button-group">
@@ -109,9 +109,9 @@
         <div id="success-screen" class="hidden">
             <h1 style="color: #00ff00;">QUEST COMPLETE!</h1>
             <div class="gif-container">
-                <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHY5bnpqdTh6dzI3ZzZtZ3d6ZzJ3ZzJ3ZzJ3ZzJ3ZzJ3JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/l0ExhcOSvFGVlpMre/giphy.gif" alt="Victory!">
+                <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHY5bnpqdTh6dzI3ZzZtZ3d6ZzJ3ZzJ3ZzJ3ZzJ3ZzJ3JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/l0ExhcOSvFGVlpMre/giphy.gif" alt="Victory!">
             </div>
-            <p>Reward: The Best Boyfriend Ever! ❤️</p>
+            <p>Reward Unlocked: The Best Boyfriend Ever! ❤️</p>
         </div>
     </div>
 
@@ -122,14 +122,12 @@
         const successScreen = document.getElementById('success-screen');
 
         const moveButton = () => {
-            // Create "Smoke Bomb" effect
             const smoke = document.createElement('div');
             smoke.className = 'smoke';
             smoke.style.left = `${noBtn.offsetLeft}px`;
             smoke.style.top = `${noBtn.offsetTop}px`;
             document.getElementById('quest-container').appendChild(smoke);
             
-            // Teleport button within container
             const container = document.getElementById('quest-container');
             const maxX = container.clientWidth - noBtn.clientWidth;
             const maxY = container.clientHeight - noBtn.clientHeight;
@@ -140,22 +138,5 @@
             noBtn.style.left = `${newX}px`;
             noBtn.style.top = `${newY}px`;
 
-            // Change GIF briefly to "Assassin/Ninja"
-            mainGif.src = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHY5bnpqdTh6dzI3ZzZtZ3d6ZzJ3ZzJ3ZzJ3ZzJ3ZzJ3JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/l0IykG0AMM5I8tRYY/giphy.gif";
-            
-            setTimeout(() => smoke.remove(), 400);
-        };
-
-        noBtn.addEventListener('mouseover', moveButton);
-        noBtn.addEventListener('touchstart', (e) => {
-            e.preventDefault(); // Prevents clicking on mobile
-            moveButton();
-        });
-
-        function celebrate() {
-            mainContent.classList.add('hidden');
-            successScreen.classList.remove('hidden');
-        }
-    </script>
-</body>
-</html>
+            // Assassin Dodge GIF
+            mainGif.src = "
