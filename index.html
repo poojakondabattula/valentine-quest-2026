@@ -97,7 +97,7 @@
         <div id="main-content">
             <h1 id="headline">NEW QUEST: BE MY VALENTINE?</h1>
             <div class="gif-container">
-                <img id="main-gif" src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5bnpqdTh6dzI3ZzZtZ3d6ZzJ3ZzJ3ZzJ3ZzJ3ZzJ3ZzJ3JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/c76IJLufpNUMo/giphy.gif" alt="Please?">
+                <img id="main-gif" src="https://i.imgur.com/x7GqXoN.gif" alt="Please?">
             </div>
             
             <div class="button-group">
@@ -109,7 +109,7 @@
         <div id="success-screen" class="hidden">
             <h1 style="color: #00ff00;">QUEST COMPLETE!</h1>
             <div class="gif-container">
-                <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHY5bnpqdTh6dzI3ZzZtZ3d6ZzJ3ZzJ3ZzJ3ZzJ3ZzJ3JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/l0ExhcOSvFGVlpMre/giphy.gif" alt="Victory!">
+                <img src="https://i.imgur.com/i3Hc2ot.gif" alt="Victory!">
             </div>
             <p>Reward Unlocked: The Best Boyfriend Ever! ❤️</p>
         </div>
@@ -138,5 +138,23 @@
             noBtn.style.left = `${newX}px`;
             noBtn.style.top = `${newY}px`;
 
-            // Assassin Dodge GIF
-            mainGif.src = "
+            // Your Assassin GIF Link
+            mainGif.src = "https://i.imgur.com/1qwT8qy.gif";
+            
+            setTimeout(() => smoke.remove(), 400);
+        };
+
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveButton();
+        });
+
+        function celebrate() {
+            mainContent.classList.add('hidden');
+            successScreen.classList.remove('hidden');
+            document.body.style.backgroundColor = "#002200"; 
+        }
+    </script>
+</body>
+</html>
